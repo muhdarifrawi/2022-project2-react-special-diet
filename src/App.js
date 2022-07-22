@@ -1,9 +1,13 @@
 import React from "react";
 import './App.css';
+import Stalls from "./Stalls";
 
 function App() {
   return (
-    <h1>Hello world</h1>
+    <React.Fragment>
+      <h1>Hello world</h1>
+      <Stalls/>
+    </React.Fragment>
   );
 }
 
