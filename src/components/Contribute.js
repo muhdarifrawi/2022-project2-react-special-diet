@@ -10,7 +10,74 @@ import ConPage7 from "./ConPage7"
 export default class Contribute extends React.Component {
     state = {
         conPage: 1,
-        error:false
+        error:false,
+        data:{
+            "dateSubmitted": "",
+            "submittedBy": "",
+            "stallName":"",
+            "stallType":"",
+            "location":
+                {
+                    "buildingName":"",
+                    "address":"",
+                    "stallNumber":""
+                },
+            "foodType":[],
+            "cuisine":"",
+            "menu":[],
+            "priceRange":[0, 0],
+            "images":"",
+            "openingHours":[
+                {
+                    "day":"Monday",
+                    "opened":true,
+                    "unsure":false,
+                    "time":""
+                },
+                {
+                    "day":"Tuesday",
+                    "opened":true,
+                    "unsure":false,
+                    "time":""
+                },
+                {
+                    "day":"Wednesday",
+                    "opened":true,
+                    "unsure":false,
+                    "time":""
+                },
+                {
+                    "day":"Thursday",
+                    "opened":true,
+                    "unsure":false,
+                    "time":""
+                },
+                {
+                    "day":"Friday",
+                    "opened":true,
+                    "unsure":false,
+                    "time":""
+                },
+                {
+                    "day":"Saturday",
+                    "opened":true,
+                    "unsure":false,
+                    "time":""
+                },
+                {
+                    "day":"Sunday",
+                    "opened":true,
+                    "unsure":false,
+                    "time":""
+                },
+                {
+                    "day":"Public Holiday",
+                    "opened":true,
+                    "unsure":false,
+                    "time":""
+                }
+            ]
+        }
     }
 
     backConPage = () => {
@@ -29,11 +96,20 @@ export default class Contribute extends React.Component {
         }
     }
 
+    handleSubmittedBy = (inputData) =>{
+        this.setState(prevState => {
+            let data = {...prevState.data}
+            data.submittedBy = inputData
+            return {data}
+        })
+    }
+
     render() {
         return (
             <React.Fragment>
                 <div className="container">
-                    {this.state.conPage === 1 ? <ConPage1 /> : ""}
+                    {this.state.conPage === 1 ? 
+                    <ConPage1 fillSubmittedBy={this.handleSubmittedBy}/> : ""}
                     {this.state.conPage === 2 ? <ConPage2 /> : ""}
                     {this.state.conPage === 3 ? <ConPage3 /> : ""}
                     {this.state.conPage === 4 ? <ConPage4 /> : ""}
