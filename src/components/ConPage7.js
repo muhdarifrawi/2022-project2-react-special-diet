@@ -1,7 +1,7 @@
 import React from "react";
 import "../css/ConPage.css"
 
-export default class ConPage4 extends React.Component {
+export default class ConPage4 extends React.Component {    
     render() {
         return (
             <React.Fragment>

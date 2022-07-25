@@ -9,7 +9,8 @@ import ConPage7 from "./ConPage7"
 
 export default class Contribute extends React.Component {
     state = {
-        conPage: 1
+        conPage: 1,
+        error:false
     }
 
     backConPage = () => {
@@ -43,7 +44,9 @@ export default class Contribute extends React.Component {
                         <button className="btn btn-light"
                             onClick={this.backConPage}>Previous</button>
                         <button className="btn btn-light"
-                            onClick={this.frontConPage}>Next</button>
+                            onClick={this.frontConPage}>
+                                {this.state.conPage === 7 ? "Done" : "Next"}
+                        </button>
                     </div>
                 </div>
             </React.Fragment>
