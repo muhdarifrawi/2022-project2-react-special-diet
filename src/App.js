@@ -2,7 +2,8 @@ import React from "react";
 import './App.css';
 import Stalls from "./components/Stalls";
 import Home from "./components/Home";
-
+import Contribute from "./components/Contribute";
+import AboutUs from "./components/AboutUs";
 
 class App extends React.Component {
   state = {
@@ -54,6 +55,8 @@ class App extends React.Component {
         </nav>
         {this.state.page === "home" ? <Home /> : ""}
         {this.state.page === "stalls" ? <Stalls /> : ""}
+        {this.state.page === "contribute" ? <Contribute /> : ""}
+        {this.state.page === "about us" ? <AboutUs /> : ""}
       </React.Fragment>
     );
   }
