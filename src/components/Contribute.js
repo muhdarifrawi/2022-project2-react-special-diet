@@ -5,6 +5,7 @@ import ConPage3 from "./ConPage3"
 import ConPage4 from "./ConPage4"
 import ConPage5 from "./ConPage5"
 import ConPage6 from "./ConPage6"
+import ConPage7 from "./ConPage7"
 
 export default class Contribute extends React.Component {
     state = {
@@ -37,6 +38,7 @@ export default class Contribute extends React.Component {
                     {this.state.conPage === 4 ? <ConPage4 /> : ""}
                     {this.state.conPage === 5 ? <ConPage5 /> : ""}
                     {this.state.conPage === 6 ? <ConPage6 /> : ""}
+                    {this.state.conPage === 7 ? <ConPage7 /> : ""}
                     <div className="m-3">
                         <button className="btn btn-light"
                             onClick={this.backConPage}>Previous</button>
