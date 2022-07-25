@@ -2,6 +2,12 @@ import React from "react";
 import "../css/ConPage.css"
 
 export default class ConPage2 extends React.Component {
+    state = {
+        allStallType:["Cafe", "Fast Food", "Hawker", "Restaurant", "Others" ],
+        stallName:"",
+        stallType:""
+    }
+    
     render() {
         return (
             <React.Fragment>
@@ -14,11 +20,11 @@ export default class ConPage2 extends React.Component {
                     What kind of stall was it?
                 </label>
                 <select>
-                    <option>Hawker</option>
-                    <option>Restaurant</option>
-                    <option>Cafe</option>
-                    <option>Fast Food</option>
-                    <option>Others</option>
+                    {this.state.allStallType.map(st=>
+                    <option value={st} key={st}>
+                        {st}
+                    </option>
+                    )}
                 </select>
             </React.Fragment>
         )
