@@ -1,0 +1,8 @@
+.nameInput{
+    border:0;
+    border-bottom: 1px solid red;
+}
+
+.nameInput:focus{
+    border:none;
+}
