@@ -116,10 +116,11 @@ export default class Contribute extends React.Component {
                     {this.state.conPage === 5 ? <ConPage5 /> : ""}
                     {this.state.conPage === 6 ? <ConPage6 /> : ""}
                     {this.state.conPage === 7 ? <ConPage7 /> : ""}
-                    <div className="m-3">
-                        <button className="btn btn-light"
+                    <div className="m-3 d-flex">
+                        <button 
+                        className={"btn btn-light " + (this.state.conPage == 1 ? "d-none" : "")}
                             onClick={this.backConPage}>Previous</button>
-                        <button className="btn btn-light"
+                        <button className="btn btn-light ms-auto"
                             onClick={this.frontConPage}>
                                 {this.state.conPage === 7 ? "Done" : "Next"}
                         </button>
