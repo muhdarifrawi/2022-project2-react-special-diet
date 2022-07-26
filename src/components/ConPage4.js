@@ -37,7 +37,7 @@ export default class ConPage4 extends React.Component {
         cuisine:"",
         menuDisplay:"",
         menu:[],
-        priceRange:[0,0]
+        priceRange:["",""]
 
     }
 
@@ -74,18 +74,31 @@ export default class ConPage4 extends React.Component {
 
     priceEntry = (event) =>{
         let price = event.target.value
-        price = price.replace(/[.,\s]/g,"")
-        price = parseInt(price)
+        if(isNaN(price)){
+            price = 0
+        }
+        else{
+            price = price.replace(/[.,\s]/g,"")
+            price = parseInt(price)
+        }
         if(event.target.name == "maxPrice"){
             this.setState({
-                priceRange:[price, this.state.priceRange[1]]
+                priceRange:[this.state.priceRange[0],price]
             })
         }
         if(event.target.name == "minPrice"){
             this.setState({
-                priceRange:[this.state.priceRange[0], price]
+                priceRange:[price,this.state.priceRange[1]]
             })
         }
+        
+    }
+
+    cuisineEntry = (event) => {
+        this.setState({
+            cuisine:event.target.value
+        })
+        // this.props.fillCuisine(event.target.value)
     }
 
     render() {
@@ -106,7 +119,8 @@ export default class ConPage4 extends React.Component {
                 )}
                 <br/>
                 <label>How about the cuisine?</label>
-                <input type="text" className="nameInput" />
+                <input type="text" className="nameInput" onChange={this.cuisineEntry}
+                    value={this.state.cuisine}/>
                 <label>
                     Give us a few from the menu. Place a comma after every food.
                 </label>
@@ -114,10 +128,10 @@ export default class ConPage4 extends React.Component {
                     onChange={this.menuEntry} value={this.state.menuDisplay}/>
                 <label>What was the most expensive price?</label>
                 <input type="text" placeholder="20.00" className="nameInput" name="maxPrice"
-                    onChange={this.priceEntry}/>
+                    onChange={this.priceEntry} value={isNaN(this.state.priceRange[1]) ? 0 : this.state.priceRange[1]}/>
                 <label>What was the cheapest price?</label>
                 <input type="text" placeholder="1.00" className="nameInput" name="minPrice"
-                    onChange={this.priceEntry}/>
+                    onChange={this.priceEntry} value={isNaN(this.state.priceRange[0]) ? 0 : this.state.priceRange[0]}/>
             </React.Fragment>
         )
     }
