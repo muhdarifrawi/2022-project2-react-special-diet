@@ -56,7 +56,6 @@ export default class ConPage4 extends React.Component {
             this.setState({
                 'foodType': [...this.state.foodType, event.target.value]
             })
-
         }
     }
 
@@ -91,14 +90,29 @@ export default class ConPage4 extends React.Component {
                 priceRange:[price,this.state.priceRange[1]]
             })
         }
-        
     }
 
     cuisineEntry = (event) => {
         this.setState({
             cuisine:event.target.value
         })
-        // this.props.fillCuisine(event.target.value)
+        this.props.fillCuisine(event.target.value)
+    }
+
+    componentDidUpdate(props,state){
+        console.log(props,state)
+        if(state.foodType !== this.state.foodType){
+            state.foodType = this.state.foodType
+            this.props.fillFoodType(this.state.foodType)
+        }
+        if(state.menu !== this.state.menu){
+            state.menu = this.state.menu
+            this.props.fillMenu(this.state.menu)
+        }
+        if(state.priceRange !== this.state.priceRange){
+            state.priceRange = this.state.priceRange
+            this.props.fillPriceRange(this.state.priceRange)
+        }
     }
 
     render() {

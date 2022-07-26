@@ -144,6 +144,38 @@ export default class Contribute extends React.Component {
         })
     }
 
+    handleFoodType = (inputData) =>{
+        this.setState(prevState => {
+            let data = { ...prevState.data }
+            data.foodType = inputData
+            return { data }
+        })
+    }
+
+    handleMenu = (inputData) =>{
+        this.setState(prevState => {
+            let data = { ...prevState.data }
+            data.menu = inputData
+            return { data }
+        })
+    }
+
+    handlePrice = (inputData) =>{
+        this.setState(prevState => {
+            let data = { ...prevState.data }
+            data.priceRange = inputData
+            return { data }
+        })
+    }
+
+    handleCuisine = (inputData) =>{
+        this.setState(prevState => {
+            let data = { ...prevState.data }
+            data.cuisine = inputData
+            return { data }
+        })
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -159,7 +191,12 @@ export default class Contribute extends React.Component {
                             fillBuildingName={this.handleBuildingName}
                             fillAddress={this.handleAddress}
                             fillStallNumber={this.handleStallNumber}/> : ""}
-                    {this.state.conPage === 4 ? <ConPage4 /> : ""}
+                    {this.state.conPage === 4 ? 
+                        <ConPage4 
+                            fillFoodType={this.handleFoodType}
+                            fillMenu={this.handleMenu}
+                            fillPriceRange={this.handlePrice}
+                            fillCuisine={this.handleCuisine}/> : ""}
                     {this.state.conPage === 5 ? <ConPage5 /> : ""}
                     {this.state.conPage === 6 ? <ConPage6 /> : ""}
                     {this.state.conPage === 7 ? <ConPage7 /> : ""}
