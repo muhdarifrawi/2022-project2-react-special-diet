@@ -9,7 +9,7 @@ import ConPage7 from "./ConPage7"
 
 export default class Contribute extends React.Component {
     state = {
-        conPage: 2,
+        conPage: 3,
         error: false,
         data: {
             "dateSubmitted": "",
@@ -120,6 +120,30 @@ export default class Contribute extends React.Component {
         })
     }
 
+    handleBuildingName = (inputData) => {
+        this.setState(prevState => {
+            let data = { ...prevState.data }
+            data.location.buildingName = inputData
+            return { data }
+        })
+    }
+
+    handleAddress = (inputData) => {
+        this.setState(prevState => {
+            let data = { ...prevState.data }
+            data.location.address = inputData
+            return { data }
+        })
+    }
+
+    handleStallNumber = (inputData) => {
+        this.setState(prevState => {
+            let data = { ...prevState.data }
+            data.location.stallNumber = inputData
+            return { data }
+        })
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -130,7 +154,11 @@ export default class Contribute extends React.Component {
                         <ConPage2
                             fillStallName={this.handleStallName}
                             fillStallType={this.handleStallType} /> : ""}
-                    {this.state.conPage === 3 ? <ConPage3 /> : ""}
+                    {this.state.conPage === 3 ? 
+                        <ConPage3 
+                            fillBuildingName={this.handleBuildingName}
+                            fillAddress={this.handleAddress}
+                            fillStallNumber={this.handleStallNumber}/> : ""}
                     {this.state.conPage === 4 ? <ConPage4 /> : ""}
                     {this.state.conPage === 5 ? <ConPage5 /> : ""}
                     {this.state.conPage === 6 ? <ConPage6 /> : ""}
