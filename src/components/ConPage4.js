@@ -35,7 +35,8 @@ export default class ConPage4 extends React.Component {
         ],
         foodType:[],
         cuisine:"",
-        menu:"",
+        menuDisplay:"",
+        menu:[],
         priceRange:[]
 
     }
@@ -58,6 +59,19 @@ export default class ConPage4 extends React.Component {
 
         }
     }
+
+    menuEntry = (event) => {
+        let menuData = event.target.value
+        menuData = menuData.replace(/\s+/g,"")
+        if(menuData.slice(-1) == ","){
+            menuData = menuData.slice(0, menuData.length - 1)
+        }
+        this.setState({
+            menuDisplay:event.target.value,
+            menu:menuData.split(",")
+        })
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -80,7 +94,8 @@ export default class ConPage4 extends React.Component {
                 <label>
                     Give us a few from the menu. Place a comma after every food.
                 </label>
-                <textarea className="nameInput" placeholder="nasi lemak, kway teow, onigiri" />
+                <textarea className="nameInput" placeholder="nasi lemak, kway teow, onigiri" 
+                    onChange={this.menuEntry} value={this.state.menuDisplay}/>
                 <label>What was the most expensive price?</label>
                 <input type="text" placeholder="20.00" className="nameInput"/>
                 <label>What was the cheapest price?</label>
