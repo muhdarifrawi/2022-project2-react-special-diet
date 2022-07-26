@@ -9,7 +9,7 @@ import ConPage7 from "./ConPage7"
 
 export default class Contribute extends React.Component {
     state = {
-        conPage: 3,
+        conPage: 4,
         error: false,
         data: {
             "dateSubmitted": "",

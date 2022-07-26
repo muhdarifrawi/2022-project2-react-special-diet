@@ -2,6 +2,62 @@ import React from "react";
 import "../css/ConPage.css"
 
 export default class ConPage4 extends React.Component {
+    state = {
+        allFoodType:[
+            {
+                display:"Gluten Free",
+                value:"gluten-free"
+            },
+            {
+                display:"Halal Certified",
+                value:"halal-certified"
+            },
+            {
+                display:"Lactose Free",
+                value:"lactose-free"
+            },
+            {
+                display:"Muslim Owned",
+                value:"muslim-owned"
+            },
+            {
+                display:"Vegetarian",
+                value:"vegetarian"
+            },
+            {
+                display:"Vegan",
+                value:"vegan"
+            },
+            {
+                display:"Others",
+                value:"others"
+            }
+        ],
+        foodType:[],
+        cuisine:"",
+        menu:"",
+        priceRange:[]
+
+    }
+
+    foodTypeEntry = (event) => {
+        if (this.state.foodType.includes(event.target.value)) {
+            let indexToRemove = this.state.foodType.indexOf(event.target.value);
+            let cloned = [
+                ...this.state.foodType.slice(0, indexToRemove),
+                ...this.state.foodType.slice(indexToRemove + 1)
+            ]
+            this.setState({
+                'foodType': cloned
+            })
+        } 
+        else {
+            this.setState({
+                'foodType': [...this.state.foodType, event.target.value]
+            })
+
+        }
+    }
     render() {
         return (
             <React.Fragment>
@@ -9,16 +65,16 @@ export default class ConPage4 extends React.Component {
                     Let us know what food does it serve!
                 </h1>
                 <label>The type of food</label>
-                <input type="checkbox" />
-                <label>Halal</label>
-                <input type="checkbox" />
-                <label>Muslim Owned</label>
-                <input type="checkbox"/>
-                <label>Vegan</label>
-                <input type="checkbox"/>
-                <label>Vegetarian</label>
-                <input type="checkbox"/>
-                <label>Others</label>
+                <br/>
+                {this.state.allFoodType.map(fd=>
+                    <React.Fragment>
+                        <input type="checkbox" value={fd.value} key={fd.value} 
+                            onChange={this.foodTypeEntry}
+                            checked={this.state.foodType.includes(fd.value)}/>
+                        <label key={fd.value + "-label"}>{fd.display}</label>
+                    </React.Fragment>
+                )}
+                <br/>
                 <label>How about the cuisine?</label>
                 <input type="text" className="nameInput" />
                 <label>
