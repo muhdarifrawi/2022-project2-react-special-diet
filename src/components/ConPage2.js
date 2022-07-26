@@ -3,7 +3,28 @@ import "../css/ConPage.css"
 
 export default class ConPage2 extends React.Component {
     state = {
-        allStallType:["Cafe", "Fast Food", "Hawker", "Restaurant", "Others" ],
+        allStallType:[
+            {
+                display: "Cafe",
+                value:"cafe"
+            },
+            {
+                display: "Fast Food",
+                value:"fast-food"
+            },
+            {
+                display: "Hawker",
+                value:"hawker"
+            },
+            {
+                display: "Restaurant",
+                value:"restaurant"
+            },
+            {
+                display: "Others",
+                value:"others"
+            },
+        ],
         stallName:"",
         stallType:""
     }
@@ -21,8 +42,8 @@ export default class ConPage2 extends React.Component {
                 </label>
                 <select>
                     {this.state.allStallType.map(st=>
-                    <option value={st} key={st}>
-                        {st}
+                    <option value={st.value} key={st.value}>
+                        {st.display}
                     </option>
                     )}
                 </select>
