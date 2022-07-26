@@ -37,7 +37,7 @@ export default class ConPage4 extends React.Component {
         cuisine:"",
         menuDisplay:"",
         menu:[],
-        priceRange:[]
+        priceRange:[0,0]
 
     }
 
@@ -72,6 +72,22 @@ export default class ConPage4 extends React.Component {
         })
     }
 
+    priceEntry = (event) =>{
+        let price = event.target.value
+        price = price.replace(/[.,\s]/g,"")
+        price = parseInt(price)
+        if(event.target.name == "maxPrice"){
+            this.setState({
+                priceRange:[price, this.state.priceRange[1]]
+            })
+        }
+        if(event.target.name == "minPrice"){
+            this.setState({
+                priceRange:[this.state.priceRange[0], price]
+            })
+        }
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -97,9 +113,11 @@ export default class ConPage4 extends React.Component {
                 <textarea className="nameInput" placeholder="nasi lemak, kway teow, onigiri" 
                     onChange={this.menuEntry} value={this.state.menuDisplay}/>
                 <label>What was the most expensive price?</label>
-                <input type="text" placeholder="20.00" className="nameInput"/>
+                <input type="text" placeholder="20.00" className="nameInput" name="maxPrice"
+                    onChange={this.priceEntry}/>
                 <label>What was the cheapest price?</label>
-                <input type="text" placeholder="1.00" className="nameInput"/>
+                <input type="text" placeholder="1.00" className="nameInput" name="minPrice"
+                    onChange={this.priceEntry}/>
             </React.Fragment>
         )
     }
