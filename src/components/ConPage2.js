@@ -26,7 +26,21 @@ export default class ConPage2 extends React.Component {
             },
         ],
         stallName:"",
-        stallType:""
+        stallType:"cafe"
+    }
+
+    stallNameEntry = (event) => {
+        this.setState({
+            stallName:event.target.value
+        })
+        this.props.fillStallName(event.target.value)
+    }
+
+    stallTypeEntry = (event) => {
+        this.setState({
+            stallType:event.target.value
+        })
+        this.props.fillStallType(event.target.value)
     }
     
     render() {
@@ -36,11 +50,11 @@ export default class ConPage2 extends React.Component {
                 <label>
                     What's the name of the stall you went to?
                 </label>
-                <input type="text" className="nameInput"/>
+                <input type="text" className="nameInput" onChange={this.stallNameEntry}/>
                 <label>
                     What kind of stall was it?
                 </label>
-                <select>
+                <select onChange={this.stallTypeEntry}>
                     {this.state.allStallType.map(st=>
                     <option value={st.value} key={st.value}>
                         {st.display}
