@@ -9,7 +9,7 @@ import ConPage7 from "./ConPage7"
 
 export default class Contribute extends React.Component {
     state = {
-        conPage: 4,
+        conPage: 5,
         error: false,
         data: {
             "dateSubmitted": "",
@@ -176,6 +176,14 @@ export default class Contribute extends React.Component {
         })
     }
 
+    handleImage = (inputData) =>{
+        this.setState(prevState => {
+            let data = { ...prevState.data }
+            data.images = inputData
+            return { data }
+        })
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -197,7 +205,8 @@ export default class Contribute extends React.Component {
                             fillMenu={this.handleMenu}
                             fillPriceRange={this.handlePrice}
                             fillCuisine={this.handleCuisine}/> : ""}
-                    {this.state.conPage === 5 ? <ConPage5 /> : ""}
+                    {this.state.conPage === 5 ? <ConPage5 
+                            fillImage={this.handleImage}/> : ""}
                     {this.state.conPage === 6 ? <ConPage6 /> : ""}
                     {this.state.conPage === 7 ? <ConPage7 /> : ""}
                     <div className="m-3 d-flex">
