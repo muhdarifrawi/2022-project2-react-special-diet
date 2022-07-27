@@ -6,45 +6,61 @@ export default class ConPage4 extends React.Component {
         days: [
             {
                 display: "Monday",
-                value: "monday"
+                value: "monday",
+                unsureName:"mondayUnsure"
             },
             {
                 display: "Tuesday",
-                value: "tuesday"
+                value: "tuesday",
+                unsureName:"tuesdayUnsure"
             },
             {
                 display: "Wednesday",
-                value: "wednesday"
+                value: "wednesday",
+                unsureName:"wednesdayUnsure"
             },
             {
                 display: "Thursday",
-                value: "thursday"
+                value: "thursday",
+                unsureName:"thursdayUnsure"
             },
             {
                 display: "Friday",
-                value: "friday"
+                value: "friday",
+                unsureName:"fridayUnsure"
             },
             {
                 display: "Saturday",
-                value: "saturday"
+                value: "saturday",
+                unsureName:"saturdayUnsure"
             },
             {
                 display: "Sunday",
-                value: "sunday"
+                value: "sunday",
+                unsureName:"sundayUnsure"
             },
             {
                 display: "Public Holiday",
-                value: "publicHoliday"
+                value: "publicHoliday",
+                unsureName:"publicHolidayUnsure"
             },
         ],
         mondayHours:"",
+        mondayUnsure:false,
         tuesdayHours:"",
+        tuesdayUnsure:false,
         wednesdayHours:"",
+        wednesdayUnsure:false,
         thursdayHours:"",
+        thursdayUnsure:false,
         fridayHours:"",
+        fridayUnsure:false,
         saturdayHours:"",
+        saturdayUnsure:false,
         sundayHours:"",
+        sundayUnsure:false,
         publicHolidayHours:"",
+        publicHolidayUnsure:false,
     }
 
     hoursEntry = (event) => {
@@ -52,6 +68,20 @@ export default class ConPage4 extends React.Component {
             [event.target.name]:event.target.value
         })
     }
+
+    unsureEntry = (event) => {
+        let transBoolean = ""
+        event.target.value == "yes" ? transBoolean = true : transBoolean = false
+        this.setState({
+            [event.target.name]:transBoolean
+        })
+    }
+
+    checkVal = (event) => {
+        console.log(event)
+    }
+
+    
 
     render() {
         return (
@@ -70,9 +100,13 @@ export default class ConPage4 extends React.Component {
                                 placeholder="11:00 am - 09:00 pm" 
                                 onChange={this.hoursEntry}/>
                             <label>Are you sure about the time?</label>
-                            <input type="radio" name={day.value + "Unsure"} />
+                            <input type="radio" name={day.value + "Unsure"} 
+                                value="yes" onChange={this.unsureEntry}
+                                checked={this.state[day.value + "Unsure"] === true }/>
                             <label>Yes</label>
-                            <input type="radio" name={day.value + "Unsure"} />
+                            <input type="radio" name={day.unsureName} 
+                                value="no" onChange={this.unsureEntry}
+                                checked={this.state[day.value + "Unsure"] === false }/>
                             <label>No</label>
                         </React.Fragment>
                     )
