@@ -2,6 +2,57 @@ import React from "react";
 import "../css/ConPage.css"
 
 export default class ConPage4 extends React.Component {
+    state = {
+        days: [
+            {
+                display: "Monday",
+                value: "monday"
+            },
+            {
+                display: "Tuesday",
+                value: "tuesday"
+            },
+            {
+                display: "Wednesday",
+                value: "wednesday"
+            },
+            {
+                display: "Thursday",
+                value: "thursday"
+            },
+            {
+                display: "Friday",
+                value: "friday"
+            },
+            {
+                display: "Saturday",
+                value: "saturday"
+            },
+            {
+                display: "Sunday",
+                value: "sunday"
+            },
+            {
+                display: "Public Holiday",
+                value: "publicHoliday"
+            },
+        ],
+        mondayHours:"",
+        tuesdayHours:"",
+        wednesdayHours:"",
+        thursdayHours:"",
+        fridayHours:"",
+        saturdayHours:"",
+        sundayHours:"",
+        publicHolidayHours:"",
+    }
+
+    hoursEntry = (event) => {
+        this.setState({
+            [event.target.name]:event.target.value
+        })
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -9,85 +60,24 @@ export default class ConPage4 extends React.Component {
                     Just one last thing
                 </h1>
                 <label>We'd like to know the time</label>
-                <h2>Monday</h2>
-                <label>Opening Hours</label>
-                <input type="text" className="nameInput" 
-                placeholder="11:00 am - 09:00 pm"/>
-                <label>Are you sure about the time?</label>
-                <input type="radio" name="monday-unsure"/>
-                <label>Yes</label>
-                <input type="radio" name="monday-unsure"/>
-                <label>No</label>
+                {
+                    this.state.days.map(day => 
+                        <React.Fragment key={day.value}>
+                            <h2>{day.display}</h2>
+                            <label>Opening Hours</label>
+                            <input type="text" className="nameInput"
+                                name={day.value + "Hours"}
+                                placeholder="11:00 am - 09:00 pm" 
+                                onChange={this.hoursEntry}/>
+                            <label>Are you sure about the time?</label>
+                            <input type="radio" name={day.value + "Unsure"} />
+                            <label>Yes</label>
+                            <input type="radio" name={day.value + "Unsure"} />
+                            <label>No</label>
+                        </React.Fragment>
+                    )
+                }
 
-                <h2>Tuesday</h2>
-                <label>Opening Hours</label>
-                <input type="text" className="nameInput" 
-                placeholder="11:00 am - 09:00 pm"/>
-                <label>Are you sure about the time?</label>
-                <input type="radio" name="tuesday-unsure"/>
-                <label>Yes</label>
-                <input type="radio" name="tuesday-unsure"/>
-                <label>No</label>
-                
-                <h2>Wednesday</h2>
-                <label>Opening Hours</label>
-                <input type="text" className="nameInput" 
-                placeholder="11:00 am - 09:00 pm"/>
-                <label>Are you sure about the time?</label>
-                <input type="radio" name="wednesday-unsure"/>
-                <label>Yes</label>
-                <input type="radio" name="wednesday-unsure"/>
-                <label>No</label>
-
-                <h2>Thursday</h2>
-                <label>Opening Hours</label>
-                <input type="text" className="nameInput" 
-                placeholder="11:00 am - 09:00 pm"/>
-                <label>Are you sure about the time?</label>
-                <input type="radio" name="thursday-unsure"/>
-                <label>Yes</label>
-                <input type="radio" name="thursday-unsure"/>
-                <label>No</label>
-
-                <h2>Friday</h2>
-                <label>Opening Hours</label>
-                <input type="text" className="nameInput" 
-                placeholder="11:00 am - 09:00 pm"/>
-                <label>Are you sure about the time?</label>
-                <input type="radio" name="friday-unsure"/>
-                <label>Yes</label>
-                <input type="radio" name="friday-unsure"/>
-                <label>No</label>
-                
-                <h2>Saturday</h2>
-                <label>Opening Hours</label>
-                <input type="text" className="nameInput" 
-                placeholder="11:00 am - 09:00 pm"/>
-                <label>Are you sure about the time?</label>
-                <input type="radio" name="saturday-unsure"/>
-                <label>Yes</label>
-                <input type="radio" name="saturday-unsure"/>
-                <label>No</label>
-
-                <h2>Sunday</h2>
-                <label>Opening Hours</label>
-                <input type="text" className="nameInput" 
-                placeholder="11:00 am - 09:00 pm"/>
-                <label>Are you sure about the time?</label>
-                <input type="radio" name="sunday-unsure"/>
-                <label>Yes</label>
-                <input type="radio" name="sunday-unsure"/>
-                <label>No</label>
-                
-                <h2>Public Holiday</h2>
-                <label>Opening Hours</label>
-                <input type="text" className="nameInput" 
-                placeholder="11:00 am - 09:00 pm"/>
-                <label>Are you sure about the time?</label>
-                <input type="radio" name="ph-unsure"/>
-                <label>Yes</label>
-                <input type="radio" name="ph-unsure"/>
-                <label>No</label>
             </React.Fragment>
         )
     }
