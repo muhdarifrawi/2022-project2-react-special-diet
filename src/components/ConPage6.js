@@ -128,10 +128,12 @@ export default class ConPage4 extends React.Component {
 
         let newOpeningHours = [ ...this.state.openingHours ]
         let selectedDay = event.target.name
+        if(selectedDay == "publicHoliday"){
+            selectedDay = "public Holiday"
+        }
         selectedDay = selectedDay.charAt(0).toUpperCase() + selectedDay.slice(1)
         let newHours = newOpeningHours.find(f => f.day == selectedDay)
         newHours.time = event.target.value
-        console.log(newHours)
         this.setState(newOpeningHours)
         this.props.fillOpeningHours(this.state.openingHours)
     }
@@ -145,16 +147,17 @@ export default class ConPage4 extends React.Component {
         let newOpeningHours = [ ...this.state.openingHours ]
         let selectedDay = event.target.name
         selectedDay = selectedDay.replace(/Unsure/,"")
+        if(selectedDay == "publicHoliday"){
+            selectedDay = "public Holiday"
+        }
         selectedDay = selectedDay.charAt(0).toUpperCase() + selectedDay.slice(1)
         let newHours = newOpeningHours.find(f => f.day == selectedDay)
         newHours.unsure = transBoolean
         this.setState(newOpeningHours)
-        console.log(selectedDay)
         this.props.fillOpeningHours(this.state.openingHours)
     }
 
     openedEntry = (event) => {
-        console.log("triggered")
         let transBoolean = ""
         event.target.value == "yes" ? transBoolean = true : transBoolean = false
         this.setState({
@@ -163,11 +166,13 @@ export default class ConPage4 extends React.Component {
         let newOpeningHours = [ ...this.state.openingHours ]
         let selectedDay = event.target.name
         selectedDay = selectedDay.replace(/Open/,"")
+        if(selectedDay == "publicHoliday"){
+            selectedDay = "public Holiday"
+        }
         selectedDay = selectedDay.charAt(0).toUpperCase() + selectedDay.slice(1)
         let newHours = newOpeningHours.find(f => f.day == selectedDay)
         newHours.opened = transBoolean
         this.setState(newOpeningHours)
-        console.log(selectedDay)
         this.props.fillOpeningHours(this.state.openingHours)
     }
 
