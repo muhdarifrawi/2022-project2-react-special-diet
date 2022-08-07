@@ -134,6 +134,15 @@ export default class ConPage4 extends React.Component {
         this.setState({
             [event.target.name]:transBoolean
         })
+        let newOpeningHours = [ ...this.state.openingHours ]
+        let selectedDay = event.target.name
+        selectedDay = selectedDay.replace(/Unsure/,"")
+        selectedDay = selectedDay.charAt(0).toUpperCase() + selectedDay.slice(1)
+        let newHours = newOpeningHours.find(f => f.day == selectedDay)
+        newHours.unsure = transBoolean
+        this.setState(newOpeningHours)
+        console.log(selectedDay)
+        this.props.fillOpeningHours(this.state.openingHours)
     }
 
     checkVal = (event) => {
@@ -163,7 +172,7 @@ export default class ConPage4 extends React.Component {
                                 value="yes" onChange={this.unsureEntry}
                                 checked={this.state[day.value + "Unsure"] === true }/>
                             <label>Yes</label>
-                            <input type="radio" name={day.unsureName} 
+                            <input type="radio" name={day.value + "Unsure"} 
                                 value="no" onChange={this.unsureEntry}
                                 checked={this.state[day.value + "Unsure"] === false }/>
                             <label>No</label>
