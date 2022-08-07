@@ -125,6 +125,7 @@ export default class ConPage4 extends React.Component {
         newHours.time = event.target.value
         console.log(newHours)
         this.setState(newOpeningHours)
+        this.props.fillOpeningHours(this.state.openingHours)
     }
 
     unsureEntry = (event) => {

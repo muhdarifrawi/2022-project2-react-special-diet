@@ -79,10 +79,10 @@ export default class Contribute extends React.Component {
                 }
             ]
         },
-        dataStatus:""
+        dataStatus: ""
     }
 
-    async componentDidMount(){
+    async componentDidMount() {
 
     }
 
@@ -100,29 +100,31 @@ export default class Contribute extends React.Component {
             })
         }
 
-        if(this.state.conPage === 6){
-            console.log("sned",process.env.REACT_APP_DATABASE_URL)
+        if (this.state.conPage === 6) {
+            console.log("sned", process.env.REACT_APP_DATABASE_URL)
             this.sendData()
         }
     }
 
-    async sendData(){
+    async sendData() {
         console.log(process.env.REACT_APP_DATABASE_URL + "/stalls", this.state.data)
-        let pushData = await axios.post(process.env.REACT_APP_DATABASE_URL + "/stalls",
-                                        this.state.data)
-                                    .then(
-                                        function(response){
-                                            console.log("triggered")
-                                            console.log("triggered",response)
-                                            this.setState({
-                                                dataStatus:"test"
-                                            })
-                                        }
-                                    ).catch(
-                                        function(error){
-                                            console.log(error)
-                                        }
-                                    )
+        let pushData = await axios.post(
+                process.env.REACT_APP_DATABASE_URL + "/stalls",
+                this.state.data
+                )
+            .then(
+                function (response) {
+                    console.log("triggered")
+                    console.log("triggered", response)
+                    this.setState({
+                        dataStatus: "test"
+                    })
+                }
+            ).catch(
+                function (error) {
+                    console.log(error)
+                }
+            )
     }
 
     handleSubmittedBy = (inputData) => {
@@ -173,7 +175,7 @@ export default class Contribute extends React.Component {
         })
     }
 
-    handleFoodType = (inputData) =>{
+    handleFoodType = (inputData) => {
         this.setState(prevState => {
             let data = { ...prevState.data }
             data.foodType = inputData
@@ -181,7 +183,7 @@ export default class Contribute extends React.Component {
         })
     }
 
-    handleMenu = (inputData) =>{
+    handleMenu = (inputData) => {
         this.setState(prevState => {
             let data = { ...prevState.data }
             data.menu = inputData
@@ -189,7 +191,7 @@ export default class Contribute extends React.Component {
         })
     }
 
-    handlePrice = (inputData) =>{
+    handlePrice = (inputData) => {
         this.setState(prevState => {
             let data = { ...prevState.data }
             data.priceRange = inputData
@@ -197,7 +199,7 @@ export default class Contribute extends React.Component {
         })
     }
 
-    handleCuisine = (inputData) =>{
+    handleCuisine = (inputData) => {
         this.setState(prevState => {
             let data = { ...prevState.data }
             data.cuisine = inputData
@@ -205,7 +207,7 @@ export default class Contribute extends React.Component {
         })
     }
 
-    handleImage = (inputData) =>{
+    handleImage = (inputData) => {
         this.setState(prevState => {
             let data = { ...prevState.data }
             data.images = inputData
@@ -217,7 +219,7 @@ export default class Contribute extends React.Component {
         this.setState(prevState => {
             let data = { ...prevState.data }
             data.openingHours = inputData
-            return {data}
+            return { data }
         })
     }
 
@@ -226,30 +228,33 @@ export default class Contribute extends React.Component {
             <React.Fragment>
                 <div className="container">
                     {this.state.conPage === 1 ?
-                        <ConPage1 fillSubmittedBy={this.handleSubmittedBy} /> : ""}
+                        <ConPage1 fillSubmittedBy={this.handleSubmittedBy} />
+                        : ""}
                     {this.state.conPage === 2 ?
                         <ConPage2
                             fillStallName={this.handleStallName}
                             fillStallType={this.handleStallType} /> : ""}
-                    {this.state.conPage === 3 ? 
-                        <ConPage3 
+                    {this.state.conPage === 3 ?
+                        <ConPage3
                             fillBuildingName={this.handleBuildingName}
                             fillAddress={this.handleAddress}
-                            fillStallNumber={this.handleStallNumber}/> : ""}
-                    {this.state.conPage === 4 ? 
-                        <ConPage4 
+                            fillStallNumber={this.handleStallNumber} /> : ""}
+                    {this.state.conPage === 4 ?
+                        <ConPage4
                             fillFoodType={this.handleFoodType}
                             fillMenu={this.handleMenu}
                             fillPriceRange={this.handlePrice}
-                            fillCuisine={this.handleCuisine}/> : ""}
-                    {this.state.conPage === 5 ? <ConPage5 
-                            fillImage={this.handleImage}/> : ""}
-                    {this.state.conPage === 6 ? <ConPage6 
-                            fillOpeningHours={this.handleOpeningHours} /> : ""}
-                    {this.state.conPage === 7 ? <ConPage7 dataStatus={this.dataStatus}/> : ""}
+                            fillCuisine={this.handleCuisine} /> : ""}
+                    {this.state.conPage === 5 ? <ConPage5
+                        fillImage={this.handleImage} /> : ""}
+                    {this.state.conPage === 6 ? <ConPage6
+                        fillOpeningHours={this.handleOpeningHours} /> : ""}
+                    {this.state.conPage === 7 ? <ConPage7 
+                        dataStatus={this.handleStatus} /> : ""}
                     <div className="m-3 d-flex">
                         <button
-                            className={"btn btn-light " + (this.state.conPage == 1 ? "d-none" : "")}
+                            className={"btn btn-light " + 
+                                (this.state.conPage == 1 ? "d-none" : "")}
                             onClick={this.backConPage}>Previous</button>
                         <button className="btn btn-light ms-auto"
                             onClick={this.frontConPage}>
