@@ -47,20 +47,28 @@ export default class ConPage4 extends React.Component {
         ],
         mondayHours:"",
         mondayUnsure:false,
+        mondayOpen:false,
         tuesdayHours:"",
         tuesdayUnsure:false,
+        tuesdayOpen:false,
         wednesdayHours:"",
         wednesdayUnsure:false,
+        wednesdayOpen:false,
         thursdayHours:"",
         thursdayUnsure:false,
+        thursdayOpen:false,
         fridayHours:"",
         fridayUnsure:false,
+        fridayOpen:false,
         saturdayHours:"",
         saturdayUnsure:false,
+        saturdayOpen:false,
         sundayHours:"",
         sundayUnsure:false,
+        sundayOpen:false,
         publicHolidayHours:"",
         publicHolidayUnsure:false,
+        publicHolidayOpen:false,
         "openingHours": [
             {
                 "day": "Monday",
@@ -145,6 +153,24 @@ export default class ConPage4 extends React.Component {
         this.props.fillOpeningHours(this.state.openingHours)
     }
 
+    openedEntry = (event) => {
+        console.log("triggered")
+        let transBoolean = ""
+        event.target.value == "yes" ? transBoolean = true : transBoolean = false
+        this.setState({
+            [event.target.name]:transBoolean
+        })
+        let newOpeningHours = [ ...this.state.openingHours ]
+        let selectedDay = event.target.name
+        selectedDay = selectedDay.replace(/Open/,"")
+        selectedDay = selectedDay.charAt(0).toUpperCase() + selectedDay.slice(1)
+        let newHours = newOpeningHours.find(f => f.day == selectedDay)
+        newHours.opened = transBoolean
+        this.setState(newOpeningHours)
+        console.log(selectedDay)
+        this.props.fillOpeningHours(this.state.openingHours)
+    }
+
     checkVal = (event) => {
         console.log(event)
     }
@@ -181,10 +207,14 @@ export default class ConPage4 extends React.Component {
                             <br/>
                             <label>Is the shop opened on this day?</label>
                             <input type="radio" name={day.value + "Open"}
-                                value="yes"/>
+                                value="yes" onChange={this.openedEntry}
+                                checked={this.state[day.value + "Open"] 
+                                                                === true }/>
                             <label>Yes</label>
                             <input type="radio" name={day.value + "Open"}
-                                value="no"/>
+                                value="no" onChange={this.openedEntry}
+                                checked={this.state[day.value + "Open"] 
+                                                                === false }/>
                             <label>No</label>
                         </React.Fragment>
                     )
