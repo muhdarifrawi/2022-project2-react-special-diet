@@ -61,12 +61,70 @@ export default class ConPage4 extends React.Component {
         sundayUnsure:false,
         publicHolidayHours:"",
         publicHolidayUnsure:false,
+        "openingHours": [
+            {
+                "day": "Monday",
+                "opened": true,
+                "unsure": false,
+                "time": ""
+            },
+            {
+                "day": "Tuesday",
+                "opened": true,
+                "unsure": false,
+                "time": ""
+            },
+            {
+                "day": "Wednesday",
+                "opened": true,
+                "unsure": false,
+                "time": ""
+            },
+            {
+                "day": "Thursday",
+                "opened": true,
+                "unsure": false,
+                "time": ""
+            },
+            {
+                "day": "Friday",
+                "opened": true,
+                "unsure": false,
+                "time": ""
+            },
+            {
+                "day": "Saturday",
+                "opened": true,
+                "unsure": false,
+                "time": ""
+            },
+            {
+                "day": "Sunday",
+                "opened": true,
+                "unsure": false,
+                "time": ""
+            },
+            {
+                "day": "Public Holiday",
+                "opened": true,
+                "unsure": false,
+                "time": ""
+            }
+        ]
     }
 
     hoursEntry = (event) => {
-        this.setState({
-            [event.target.name]:event.target.value
-        })
+        // this.setState({
+        //     [event.target.name]:event.target.value
+        // })
+
+        let newOpeningHours = [ ...this.state.openingHours ]
+        let selectedDay = event.target.name
+        selectedDay = selectedDay.charAt(0).toUpperCase() + selectedDay.slice(1)
+        let newHours = newOpeningHours.find(f => f.day == selectedDay)
+        newHours.time = event.target.value
+        console.log(newHours)
+        this.setState(newOpeningHours)
     }
 
     unsureEntry = (event) => {
@@ -96,7 +154,7 @@ export default class ConPage4 extends React.Component {
                             <h2>{day.display}</h2>
                             <label>Opening Hours</label>
                             <input type="text" className="nameInput"
-                                name={day.value + "Hours"}
+                                name={day.value}
                                 placeholder="11:00 am - 09:00 pm" 
                                 onChange={this.hoursEntry}/>
                             <label>Are you sure about the time?</label>

@@ -9,6 +9,9 @@ export default class ConPage4 extends React.Component {
                 <h2>Thank you for the contribution :)</h2>
                 {/* there would be a submission before this page.
                 if error it would say another thing instead. */}
+                <p>
+                    test: {this.props.dataStatus}
+                </p>
             </React.Fragment>
         )
     }

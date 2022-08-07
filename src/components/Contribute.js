@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios"
 import ConPage1 from "./ConPage1"
 import ConPage2 from "./ConPage2"
 import ConPage3 from "./ConPage3"
@@ -77,11 +78,15 @@ export default class Contribute extends React.Component {
                     "time": ""
                 }
             ]
-        }
+        },
+        dataStatus:""
+    }
+
+    async componentDidMount(){
+
     }
 
     backConPage = () => {
-        console.log("test ere: ", this.state.conPage)
         if (this.state.conPage > 1) {
             this.setState({
                 conPage: this.state.conPage - 1
@@ -94,6 +99,30 @@ export default class Contribute extends React.Component {
                 conPage: this.state.conPage + 1
             })
         }
+
+        if(this.state.conPage === 6){
+            console.log("sned",process.env.REACT_APP_DATABASE_URL)
+            this.sendData()
+        }
+    }
+
+    async sendData(){
+        console.log(process.env.REACT_APP_DATABASE_URL + "/stalls", this.state.data)
+        let pushData = await axios.post(process.env.REACT_APP_DATABASE_URL + "/stalls",
+                                        this.state.data)
+                                    .then(
+                                        function(response){
+                                            console.log("triggered")
+                                            console.log("triggered",response)
+                                            this.setState({
+                                                dataStatus:"test"
+                                            })
+                                        }
+                                    ).catch(
+                                        function(error){
+                                            console.log(error)
+                                        }
+                                    )
     }
 
     handleSubmittedBy = (inputData) => {
@@ -184,6 +213,14 @@ export default class Contribute extends React.Component {
         })
     }
 
+    handleOpeningHours = (inputData) => {
+        this.setState(prevState => {
+            let data = { ...prevState.data }
+            data.openingHours = inputData
+            return {data}
+        })
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -207,8 +244,9 @@ export default class Contribute extends React.Component {
                             fillCuisine={this.handleCuisine}/> : ""}
                     {this.state.conPage === 5 ? <ConPage5 
                             fillImage={this.handleImage}/> : ""}
-                    {this.state.conPage === 6 ? <ConPage6 /> : ""}
-                    {this.state.conPage === 7 ? <ConPage7 /> : ""}
+                    {this.state.conPage === 6 ? <ConPage6 
+                            fillOpeningHours={this.handleOpeningHours} /> : ""}
+                    {this.state.conPage === 7 ? <ConPage7 dataStatus={this.dataStatus}/> : ""}
                     <div className="m-3 d-flex">
                         <button
                             className={"btn btn-light " + (this.state.conPage == 1 ? "d-none" : "")}
