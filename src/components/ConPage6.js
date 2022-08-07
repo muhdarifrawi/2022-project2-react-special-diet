@@ -170,11 +170,21 @@ export default class ConPage4 extends React.Component {
                             <label>Are you sure about the time?</label>
                             <input type="radio" name={day.value + "Unsure"} 
                                 value="yes" onChange={this.unsureEntry}
-                                checked={this.state[day.value + "Unsure"] === true }/>
+                                checked={this.state[day.value + "Unsure"] 
+                                                                === true }/>
                             <label>Yes</label>
                             <input type="radio" name={day.value + "Unsure"} 
                                 value="no" onChange={this.unsureEntry}
-                                checked={this.state[day.value + "Unsure"] === false }/>
+                                checked={this.state[day.value + "Unsure"] 
+                                                                === false }/>
+                            <label>No</label>
+                            <br/>
+                            <label>Is the shop opened on this day?</label>
+                            <input type="radio" name={day.value + "Open"}
+                                value="yes"/>
+                            <label>Yes</label>
+                            <input type="radio" name={day.value + "Open"}
+                                value="no"/>
                             <label>No</label>
                         </React.Fragment>
                     )
